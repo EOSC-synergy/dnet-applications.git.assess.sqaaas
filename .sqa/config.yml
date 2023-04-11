@@ -1,0 +1,56 @@
+config:
+  credentials: []
+  project_repos:
+    code-repo.d4science.org/D-Net/dnet-applications:
+      branch: master
+      repo: https://code-repo.d4science.org/D-Net/dnet-applications.git
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/1.7.9
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      code-repo.d4science.org/D-Net/dnet-applications git:
+        commands:
+        - /usr/bin/env sh .sqa/script.craggy-goldenrod-caiman.sh
+        container: qc.acc_skanky-white-antelope
+  QC.Doc:
+    repos:
+      code-repo.d4science.org/D-Net/dnet-applications find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.muzzy-xanthic-liger.sh
+        container: qc.doc_shabby-ochre-sparrow
+      code-repo.d4science.org/D-Net/dnet-applications git:
+        commands:
+        - /usr/bin/env sh .sqa/script.cheeky-gamboge-russel.sh
+        container: qc.doc_snippy-aqua-cuscus
+      code-repo.d4science.org/D-Net/dnet-applications markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.scaly-crimson-hippopotamus.sh
+        container: qc.doc_zippy-purple-monster
+  QC.Lic:
+    repos:
+      code-repo.d4science.org/D-Net/dnet-applications licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.squirrely-indigo-grouse.sh
+        container: qc.lic_ready-coral-bird
+  QC.Sty:
+    repos:
+      code-repo.d4science.org/D-Net/dnet-applications checkstyle:
+        commands:
+        - /usr/bin/env sh .sqa/script.hazy-crimson-wolfhound.sh
+        container: qc.sty_cozy-ochre-havanese
+      code-repo.d4science.org/D-Net/dnet-applications jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.ready-firebrick-chin.sh
+        container: qc.sty_homey-corn-chamois
+  QC.Ver:
+    repos:
+      code-repo.d4science.org/D-Net/dnet-applications get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.clammy-tangerine-fly.sh
+        container: qc.ver_whiny-bronze-spaniel
+timeout: 5400
